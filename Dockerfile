@@ -1,0 +1,28 @@
+FROM docker.io/denoland/deno:debian-1.46.3 AS builder
+RUN apt-get update \
+	&& apt-get upgrade -y \
+	&& apt-get install -y unzip
+WORKDIR /app
+COPY . ./
+RUN deno compile \
+	--allow-env=BOT_TOKEN \
+	--allow-net=api.telegram.org:443 \
+	--allow-read=config,data \
+	--allow-write=data \
+	iphone-battery-health-tgbot.ts
+
+
+FROM docker.io/library/debian:bookworm-slim
+RUN apt-get update \
+	&& apt-get upgrade -y \
+	&& apt-get install -y --no-install-recommends gnuplot \
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/* /var/cache/* /var/log/*
+
+WORKDIR /app
+VOLUME /app/config
+VOLUME /app/data
+
+COPY --from=builder /app/iphone-battery-health-tgbot /usr/local/bin/
+
+CMD ["iphone-battery-health-tgbot"]

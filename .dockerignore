@@ -1,0 +1,9 @@
+.*
+*.md
+**/*.test.*
+**/test.*
+Dockerfile
+node_modules
+
+/config
+/data
