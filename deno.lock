@@ -61,6 +61,7 @@
     "https://deno.land/x/grammy_types@v3.14.0/passport.ts": "19820e7d6c279521f8bc8912d6a378239f73d4ab525453808994b5f44ef95215",
     "https://deno.land/x/grammy_types@v3.14.0/payment.ts": "13a80dd951efee47caad8d71dc8efd293247a42ef4bfff587ca64316ff0d638e",
     "https://deno.land/x/grammy_types@v3.14.0/settings.ts": "f8ff810da6f1007ed24cd504809bf46820229c395ff9bfc3e5c8ceaef5b2aae1",
-    "https://deno.land/x/grammy_types@v3.14.0/update.ts": "71cc0d5ec860149b71415ba03282b1d7edd0466b36e2789521a3b3a3d7796493"
+    "https://deno.land/x/grammy_types@v3.14.0/update.ts": "71cc0d5ec860149b71415ba03282b1d7edd0466b36e2789521a3b3a3d7796493",
+    "https://raw.githubusercontent.com/EdJoPaTo/iPhoneBatteryHealth/refs/heads/main/data.ts": "99e07883a11495eff21b89b667e86f5db7a5cf6ef2e56839ee1decdc1eb3b51f"
   }
 }
