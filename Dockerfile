@@ -8,6 +8,7 @@ RUN deno compile \
 	--allow-env \
 	--allow-net=api.telegram.org:443 \
 	--allow-read \
+	--allow-run=git \
 	--allow-write=data \
 	iphone-battery-health-tgbot.ts
 
