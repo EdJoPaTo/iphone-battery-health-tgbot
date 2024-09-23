@@ -5,7 +5,7 @@ interface Config {
 }
 
 export const CONFIG: Readonly<Config> = yaml.parse(
-	Deno.readTextFileSync("config/config.yaml"),
+	Deno.readTextFileSync("config.yaml"),
 ) as Config;
 
 export function getName(id: number | undefined): string | undefined {
