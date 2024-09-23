@@ -54,12 +54,12 @@ mainMenu.chooseIntoSubmenu("d", deviceMenu, {
 });
 
 deviceMenu.choose("percent", {
-	columns: 6,
+	columns: 5,
 	async choices(ctx) {
 		const entry = await getCurrentEntry(ctx);
 		const minimum = Math.min(...Object.values(entry.health));
 		const result: string[] = [];
-		for (let index = 0; index < 6; index++) {
+		for (let index = 0; index < 20; index++) {
 			result.push(String(minimum - index));
 		}
 		return result;
