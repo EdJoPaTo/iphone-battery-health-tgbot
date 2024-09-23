@@ -35,6 +35,7 @@
 		}
 	},
 	"imports": {
-		"grammy": "https://deno.land/x/grammy@v1.30.0/mod.ts"
+		"grammy": "npm:grammy@1",
+		"grammy-inline-menu": "npm:grammy-inline-menu@9"
 	}
 }

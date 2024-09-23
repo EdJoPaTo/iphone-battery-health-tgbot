@@ -1,6 +1,8 @@
 import { Bot, session } from "grammy";
+import { MenuMiddleware } from "grammy-inline-menu";
 import { html as format } from "npm:telegram-format@3";
 import { getName } from "./config.ts";
+import { mainMenu } from "./menu.ts";
 import type { MyContext } from "./my-context.ts";
 
 const BOT_TOKEN = Deno.env.get("BOT_TOKEN");
@@ -17,7 +19,7 @@ baseBot.command(
 		),
 );
 
-baseBot.use(session());
+baseBot.use(session({ initial: () => ({}) }));
 
 const bot = baseBot.errorBoundary(async ({ error, ctx }) => {
 	if (error instanceof Error && error.message.includes("Too Many Requests")) {
@@ -73,7 +75,9 @@ bot.use(async (ctx, next) => {
 	);
 });
 
-bot.command("start", (ctx) => ctx.reply("Moin " + ctx.state.owner + "!"));
+const menu = new MenuMiddleware<MyContext>("/", mainMenu);
+bot.use(menu);
+bot.command("start", (ctx) => menu.replyToContext(ctx));
 
 const COMMANDS = {
 	start: "show the menu",

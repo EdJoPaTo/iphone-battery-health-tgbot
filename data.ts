@@ -2,14 +2,17 @@ import {
 	type BatteryEntry,
 	type Device,
 	DEVICES,
+	type IsoDate,
 	load,
 	save,
 } from "https://raw.githubusercontent.com/EdJoPaTo/iPhoneBatteryHealth/refs/heads/main/data.ts";
 import { existsSync } from "node:fs";
 
-export { type BatteryEntry, type Device, DEVICES };
+export { type BatteryEntry, type Device, DEVICES, type IsoDate };
 
 const PATH = "data/data.yaml";
+
+await pull();
 
 async function git(...args: string[]): Promise<void> {
 	const command = new Deno.Command("git", { args });
@@ -19,7 +22,7 @@ async function git(...args: string[]): Promise<void> {
 	}
 }
 
-async function pull(): Promise<void> {
+export async function pull(): Promise<void> {
 	if (existsSync("data/.git")) {
 		await git("-C", "data", "pull");
 	} else {
@@ -43,10 +46,21 @@ async function commit(
 	await git("-C", "data", "push", "--dry-run");
 }
 
-export async function getCurrent(owner: string): Promise<BatteryEntry[]> {
-	await pull();
+export async function getDevices(
+	owner: string,
+): Promise<ReadonlyArray<Device>> {
 	const all = await load(PATH);
-	return all.filter((entry) => entry.owner === owner);
+	return all.filter((entry) => entry.owner === owner).map((entry) =>
+		entry.device
+	);
+}
+
+export async function getEntry(
+	owner: string,
+	device: Device,
+): Promise<BatteryEntry | undefined> {
+	const all = await load(PATH);
+	return all.find((entry) => entry.owner === owner && entry.device === device);
 }
 
 export async function update(entry: BatteryEntry): Promise<void> {
