@@ -35,14 +35,14 @@ const bot = baseBot.errorBoundary(async ({ error, ctx }) => {
 		// deno-lint-ignore no-explicit-any
 		(error as any)?.on?.payload,
 	);
-	let text = `🔥 Da ist wohl ein Fehler aufgetreten…
+	let text = `🔥 Looks like an error happened…
 
-Schreib mal @EdJoPaTo dazu an oder erstell ein ${
+Tell @EdJoPaTo about this or open an ${
 		format.url(
-			"Issue auf GitHub",
+			"Issue on GitHub",
 			"https://github.com/EdJoPaTo/iphone-battery-health-tgbot/issues",
 		)
-	}. Dafür findet sich sicher eine Lösung. ☺️
+	}. Let's fix this together. ☺️
 
 Error: `;
 

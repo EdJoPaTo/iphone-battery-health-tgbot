@@ -40,7 +40,7 @@ export const deviceMenu = new MenuTemplate<MyContext>(async (ctx) => {
 	let text = format.monospaceBlock(yaml.stringify(entry), "yaml");
 	text += "\n\n";
 	text +=
-		"⚠️ Does the device show a warning and doesnt show Peak performance capability? When thats the case please send the admin a message about this. Then it can be added to the data set as well.";
+		"⚠️ Does the device show a warning and doesnt show Peak performance capability? When thats the case please send the admin a message about this. Then it can be added to the dataset as well.";
 	return { text, parse_mode: format.parse_mode };
 });
 
