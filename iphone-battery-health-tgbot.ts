@@ -2,6 +2,7 @@ import { Bot, session } from "grammy";
 import { MenuMiddleware } from "grammy-inline-menu";
 import { html as format } from "npm:telegram-format@3";
 import { getName } from "./config.ts";
+import { pull } from "./data.ts";
 import { mainMenu } from "./menu.ts";
 import type { MyContext } from "./my-context.ts";
 
@@ -79,8 +80,11 @@ const menu = new MenuMiddleware<MyContext>("/", mainMenu);
 bot.use(menu);
 bot.command("start", (ctx) => menu.replyToContext(ctx));
 
+bot.command('pull', async (ctx) => {await pull(); return ctx.reply("Pull successful.")});
+
 const COMMANDS = {
 	start: "show the menu",
+	pull: "git pull the data repository for updated data",
 	privacy: "information about the data processing",
 } as const;
 await baseBot.api.setMyCommands(

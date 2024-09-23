@@ -8,8 +8,7 @@ import {
 	getDevices,
 	getEntry,
 	type IsoDate,
-	pull,
-	update,
+	update
 } from "./data.ts";
 import type { MyContext } from "./my-context.ts";
 
@@ -32,18 +31,9 @@ async function getCurrentEntry(ctx: MyContext): Promise<BatteryEntry> {
 	return entry;
 }
 
-const updateDataButton = {
-	text: "Pull Data Repo",
-	async do() {
-		await pull();
-		return true;
-	},
-} as const;
-
 export const mainMenu = new MenuTemplate<MyContext>((ctx) =>
 	`Moin ${ctx.state.owner}!\n\nSelect your device. With this bot you can not add new devices. Ask the admin for this.`
 );
-mainMenu.interact("update", updateDataButton);
 
 export const deviceMenu = new MenuTemplate<MyContext>(async (ctx) => {
 	const entry = await getCurrentEntry(ctx);
@@ -53,7 +43,6 @@ export const deviceMenu = new MenuTemplate<MyContext>(async (ctx) => {
 		"⚠️ Does the device show a warning and doesnt show Peak performance capability? When thats the case please send the admin a message about this. Then it can be added to the data set as well.";
 	return { text, parse_mode: format.parse_mode };
 });
-deviceMenu.interact("update", updateDataButton);
 
 mainMenu.chooseIntoSubmenu("d", deviceMenu, {
 	columns: 2,
