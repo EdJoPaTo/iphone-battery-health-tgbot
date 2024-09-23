@@ -15,7 +15,7 @@ RUN deno compile \
 FROM docker.io/library/debian:bookworm-slim
 RUN apt-get update \
 	&& apt-get upgrade -y \
-	&& apt-get install -y --no-install-recommends gnuplot \
+	&& apt-get install -y git \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /var/cache/* /var/log/*
 
@@ -23,6 +23,8 @@ WORKDIR /app
 VOLUME /app/config
 VOLUME /app/data
 
-COPY --from=builder /app/iphone-battery-health-tgbot /usr/local/bin/
+COPY gitconfig /root/.gitconfig
+COPY known_hosts /root/.ssh/known_hosts
 
+COPY --from=builder /app/iphone-battery-health-tgbot /usr/local/bin/
 CMD ["iphone-battery-health-tgbot"]
