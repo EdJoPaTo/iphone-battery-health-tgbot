@@ -43,7 +43,7 @@ async function commit(
 	await save(PATH, { batteries });
 	await git("-C", "data", "add", "data.yaml");
 	await git("-C", "data", "commit", "--message=" + message);
-	await git("-C", "data", "push", "--dry-run");
+	await git("-C", "data", "push");
 }
 
 export async function getDevices(
