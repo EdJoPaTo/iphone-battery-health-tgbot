@@ -8,7 +8,7 @@ import {
 	getDevices,
 	getEntry,
 	type IsoDate,
-	update
+	update,
 } from "./data.ts";
 import type { MyContext } from "./my-context.ts";
 

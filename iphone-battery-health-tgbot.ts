@@ -80,7 +80,10 @@ const menu = new MenuMiddleware<MyContext>("/", mainMenu);
 bot.use(menu);
 bot.command("start", (ctx) => menu.replyToContext(ctx));
 
-bot.command('pull', async (ctx) => {await pull(); return ctx.reply("Pull successful.")});
+bot.command("pull", async (ctx) => {
+	await pull();
+	return ctx.reply("Pull successful.");
+});
 
 const COMMANDS = {
 	start: "show the menu",
