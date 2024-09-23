@@ -5,9 +5,9 @@ RUN apt-get update \
 WORKDIR /app
 COPY . ./
 RUN deno compile \
-	--allow-env=BOT_TOKEN \
+	--allow-env \
 	--allow-net=api.telegram.org:443 \
-	--allow-read=config,data \
+	--allow-read \
 	--allow-write=data \
 	iphone-battery-health-tgbot.ts
 
