@@ -14,6 +14,7 @@
 		"./node_modules/"
 	],
 	"fmt": {
+		"proseWrap": "preserve",
 		"useTabs": true
 	},
 	"lint": {
