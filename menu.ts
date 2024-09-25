@@ -69,7 +69,7 @@ deviceMenu.choose("percent", {
 		const today = new Date().toISOString().substring(0, 10) as IsoDate;
 		entry.health[today] = Number(percentage);
 		await update(entry);
-		return true;
+		return "..";
 	},
 });
 
