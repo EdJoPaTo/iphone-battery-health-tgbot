@@ -16,8 +16,9 @@ await pull();
 
 async function git(...args: string[]): Promise<void> {
 	const command = new Deno.Command("git", { args });
-	const output = await command.output();
-	if (!output.success) {
+	const process = command.spawn();
+	const status = await process.status;
+	if (!status.success) {
 		throw new Error(`git was not successful`);
 	}
 }
