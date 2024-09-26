@@ -64,11 +64,16 @@ deviceMenu.choose("percent", {
 		}
 		return result;
 	},
-	async do(ctx, percentage) {
+	async do(ctx, key) {
 		const entry = await getCurrentEntry(ctx);
 		const today = new Date().toISOString().substring(0, 10) as IsoDate;
-		entry.health[today] = Number(percentage);
-		await update(entry);
+		const percentage = Number(key);
+
+		if (entry.health[today] !== percentage) {
+			entry.health[today] = percentage;
+			await update(entry);
+		}
+
 		return "..";
 	},
 });
