@@ -47,21 +47,24 @@ async function commit(
 	await git("-C", "data", "push");
 }
 
-export async function getDevices(
+export async function getEntries(
 	owner: string,
-): Promise<ReadonlyArray<Device>> {
+): Promise<ReadonlyArray<BatteryEntry>> {
 	const all = await load(PATH);
-	return all.filter((entry) => entry.owner === owner).map((entry) =>
-		entry.device
-	);
+	return all.filter((entry) => entry.owner === owner);
 }
 
 export async function getEntry(
 	owner: string,
 	device: Device,
+	age: IsoDate,
 ): Promise<BatteryEntry | undefined> {
 	const all = await load(PATH);
-	return all.find((entry) => entry.owner === owner && entry.device === device);
+	return all.find((entry) =>
+		entry.owner === owner &&
+		entry.device === device &&
+		entry.age === age
+	);
 }
 
 export async function update(entry: BatteryEntry): Promise<void> {
@@ -69,7 +72,9 @@ export async function update(entry: BatteryEntry): Promise<void> {
 	await pull();
 	const batteries = await load(PATH);
 	const before = batteries.find((value) =>
-		value.owner === entry.owner && value.device === entry.device
+		value.owner === entry.owner &&
+		value.device === entry.device &&
+		value.age === entry.age
 	);
 	if (before) {
 		before.health = entry.health;

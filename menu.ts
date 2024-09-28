@@ -5,7 +5,7 @@ import {
 	type BatteryEntry,
 	type Device,
 	DEVICES,
-	getDevices,
+	getEntries,
 	getEntry,
 	type IsoDate,
 	update,
@@ -17,16 +17,17 @@ function isDevice(device: unknown): device is Device {
 	const STRINGS = (DEVICES as unknown) as string[];
 	return STRINGS.includes(device);
 }
-
-function getCurrentDevice(ctx: MyContext): Device {
-	if (Array.isArray(ctx.match) && isDevice(ctx.match[1])) {
-		return ctx.match[1];
-	}
-	throw new Error("unknown device: " + String(ctx.match));
+function isIsoDate(date: unknown): date is IsoDate {
+	return typeof date === "string" && /\d{4}-\d{2}-\d{2}/.test(date);
 }
+
 async function getCurrentEntry(ctx: MyContext): Promise<BatteryEntry> {
-	const device = getCurrentDevice(ctx);
-	const entry = await getEntry(ctx.state.owner, device);
+	const matchgroup = Array.isArray(ctx.match) && ctx.match[1];
+	if (!matchgroup) throw new Error("ctx.match is not a regex match");
+	const [device, age] = matchgroup.split(" ");
+	if (!isIsoDate(age)) throw new Error("ctx.match doesnt contain age");
+	if (!isDevice(device)) throw new Error("ctx.match doesnt contain device");
+	const entry = await getEntry(ctx.state.owner, device, age);
 	if (!entry) throw new Error("no device of the user found");
 	return entry;
 }
@@ -45,8 +46,11 @@ export const deviceMenu = new MenuTemplate<MyContext>(async (ctx) => {
 });
 
 mainMenu.chooseIntoSubmenu("d", deviceMenu, {
-	columns: 2,
-	choices: (ctx) => getDevices(ctx.state.owner),
+	columns: 1,
+	async choices(ctx) {
+		const entries = await getEntries(ctx.state.owner);
+		return entries.map((entry) => `${entry.device} ${entry.age}`);
+	},
 	getCurrentPage: (ctx) => ctx.session.page,
 	setPage(ctx, page) {
 		ctx.session.page = page;
