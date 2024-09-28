@@ -29,3 +29,15 @@ jobs:
 
       - run: deno cache *.ts
       - run: deno check *.ts
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - uses: actions/checkout@v4
+
+      - run: deno cache *.ts
+      - run: deno test --no-check
