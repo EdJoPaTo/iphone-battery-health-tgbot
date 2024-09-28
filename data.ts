@@ -25,7 +25,7 @@ async function git(...args: string[]): Promise<void> {
 
 export async function pull(): Promise<void> {
 	if (existsSync("data/.git")) {
-		await git("-C", "data", "pull");
+		await git("-C", "data", "pull", "--rebase");
 	} else {
 		await git(
 			"clone",
