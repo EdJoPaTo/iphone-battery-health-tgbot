@@ -10,6 +10,7 @@ import {
 	type IsoDate,
 	update,
 } from "./data.ts";
+import { sortByLocale } from "./helper.ts";
 import type { MyContext } from "./my-context.ts";
 
 function isDevice(device: unknown): device is Device {
@@ -49,7 +50,9 @@ mainMenu.chooseIntoSubmenu("d", deviceMenu, {
 	columns: 1,
 	async choices(ctx) {
 		const entries = await getEntries(ctx.state.owner);
-		return entries.map((entry) => `${entry.device} ${entry.age}`);
+		return entries
+			.sort(sortByLocale((entry) => `${entry.age} ${entry.device}`, true))
+			.map((entry) => `${entry.device} ${entry.age}`);
 	},
 	getCurrentPage: (ctx) => ctx.session.page,
 	setPage(ctx, page) {

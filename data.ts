@@ -49,7 +49,7 @@ async function commit(
 
 export async function getEntries(
 	owner: string,
-): Promise<ReadonlyArray<BatteryEntry>> {
+): Promise<Array<BatteryEntry>> {
 	const all = await load(PATH);
 	return all.filter((entry) => entry.owner === owner);
 }
