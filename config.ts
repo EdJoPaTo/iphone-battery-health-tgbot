@@ -4,7 +4,7 @@ interface Config {
 	users: Readonly<Record<number, string>>;
 }
 
-export const CONFIG: Readonly<Config> = yaml.parse(
+const CONFIG: Readonly<Config> = yaml.parse(
 	Deno.readTextFileSync("config.yaml"),
 ) as Config;
 
