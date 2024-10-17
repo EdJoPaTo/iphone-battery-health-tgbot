@@ -21,7 +21,6 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/* /var/cache/* /var/log/*
 
 WORKDIR /app
-VOLUME /app/config
 VOLUME /app/data
 
 COPY gitconfig /root/.gitconfig
