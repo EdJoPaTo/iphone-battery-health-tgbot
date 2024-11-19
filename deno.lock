@@ -2,30 +2,30 @@
   "version": "3",
   "packages": {
     "specifiers": {
-      "jsr:@std/assert@1": "jsr:@std/assert@1.0.6",
-      "jsr:@std/internal@^1.0.4": "jsr:@std/internal@1.0.4",
+      "jsr:@std/assert@1": "jsr:@std/assert@1.0.8",
+      "jsr:@std/internal@^1.0.5": "jsr:@std/internal@1.0.5",
       "jsr:@std/yaml@1": "jsr:@std/yaml@1.0.5",
-      "npm:grammy-inline-menu@9": "npm:grammy-inline-menu@9.0.2_grammy@1.30.0",
-      "npm:grammy@1": "npm:grammy@1.30.0",
+      "npm:grammy-inline-menu@9": "npm:grammy-inline-menu@9.2.0_grammy@1.32.0",
+      "npm:grammy@1": "npm:grammy@1.32.0",
       "npm:telegram-format@3": "npm:telegram-format@3.1.0"
     },
     "jsr": {
-      "@std/assert@1.0.6": {
-        "integrity": "1904c05806a25d94fe791d6d883b685c9e2dcd60e4f9fc30f4fc5cf010c72207",
+      "@std/assert@1.0.8": {
+        "integrity": "ebe0bd7eb488ee39686f77003992f389a06c3da1bbd8022184804852b2fa641b",
         "dependencies": [
-          "jsr:@std/internal@^1.0.4"
+          "jsr:@std/internal@^1.0.5"
         ]
       },
-      "@std/internal@1.0.4": {
-        "integrity": "62e8e4911527e5e4f307741a795c0b0a9e6958d0b3790716ae71ce085f755422"
+      "@std/internal@1.0.5": {
+        "integrity": "54a546004f769c1ac9e025abd15a76b6671ddc9687e2313b67376125650dc7ba"
       },
       "@std/yaml@1.0.5": {
         "integrity": "71ba3d334305ee2149391931508b2c293a8490f94a337eef3a09cade1a2a2742"
       }
     },
     "npm": {
-      "@grammyjs/types@3.14.0": {
-        "integrity": "sha512-uUVikYAiHNU8CvkeQ6YA/QPbMLgTTpFVLp83VkXCs423w6cDsvfdA6bcrQJGUnc/Q6zHQXXZUftXDYl2b/6L4A==",
+      "@grammyjs/types@3.16.0": {
+        "integrity": "sha512-hElpAJL7/p8PnHvOM0K8+iU0lrVqFgVHzsAknNomZXWT9sFyj5tmEmsAM0JCYBTNvWx5/g5jWU87+PlgUDZ/YA==",
         "dependencies": {}
       },
       "abort-controller@3.0.0": {
@@ -44,17 +44,17 @@
         "integrity": "sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==",
         "dependencies": {}
       },
-      "grammy-inline-menu@9.0.2_grammy@1.30.0": {
-        "integrity": "sha512-M2In4CnzT5QaqfOHPR5FX1AZ5FkmB/lYwN0/oD0le02y4FYLgQVnU4zhKhl6P0JejaCZnrYT3xM9oGfnnkXNyg==",
+      "grammy-inline-menu@9.2.0_grammy@1.32.0": {
+        "integrity": "sha512-QxZQvqKa1GM+WlGTGRuHEdsVOGzh1yjL1klMwX+Ojez6srGKeMeZi5JkUIcxokTocjk0vn11Ex6yIknBr0UbMQ==",
         "dependencies": {
-          "grammy": "grammy@1.30.0",
-          "type-fest": "type-fest@4.26.1"
+          "grammy": "grammy@1.32.0",
+          "type-fest": "type-fest@4.27.0"
         }
       },
-      "grammy@1.30.0": {
-        "integrity": "sha512-uD1kMbgR04qIed4z+eHc68t41ZyzPC3mbHSJD+hQtoTA6RkBSgVxL2HJLmgP7cUjEirlkxHjV6F7Hl7a4Ozvbg==",
+      "grammy@1.32.0": {
+        "integrity": "sha512-FUH7q0BhMyqsx8abo45iwKBnHX6Q9A4o1uUTVA3sjzyQtLzzYLeDgzCgUqjaKUh2xF/+LZBw2lgJkRWlB2RKeg==",
         "dependencies": {
-          "@grammyjs/types": "@grammyjs/types@3.14.0",
+          "@grammyjs/types": "@grammyjs/types@3.16.0",
           "abort-controller": "abort-controller@3.0.0",
           "debug": "debug@4.3.7",
           "node-fetch": "node-fetch@2.7.0"
@@ -78,8 +78,8 @@
         "integrity": "sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==",
         "dependencies": {}
       },
-      "type-fest@4.26.1": {
-        "integrity": "sha512-yOGpmOAL7CkKe/91I5O3gPICmJNLJ1G4zFYVAsRHg7M64biSnPtRj0WNQt++bRkjYOqjWXrhnUw1utzmVErAdg==",
+      "type-fest@4.27.0": {
+        "integrity": "sha512-3IMSWgP7C5KSQqmo1wjhKrwsvXAtF33jO3QY+Uy++ia7hqvgSK6iXbbg5PbDBc1P2ZbNEDgejOrN4YooXvhwCw==",
         "dependencies": {}
       },
       "webidl-conversions@3.0.1": {
@@ -96,7 +96,7 @@
     }
   },
   "remote": {
-    "https://raw.githubusercontent.com/EdJoPaTo/iPhoneBatteryHealth/refs/heads/main/data.ts": "c4307d7f8eea9c40f4ef062fda488d708aa3f862305b26268445e9c1db186bba"
+    "https://raw.githubusercontent.com/EdJoPaTo/iPhoneBatteryHealth/refs/heads/main/data.ts": "a4bd7764e0256c50a4c678394aee9c3f75a1966eb977989ecbcd27c9254ef43a"
   },
   "workspace": {
     "dependencies": [

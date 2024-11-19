@@ -2,7 +2,9 @@
 *.md
 **/*.test.*
 **/test.*
+coverage
 Dockerfile
+docs
 node_modules
 
 /config.yaml

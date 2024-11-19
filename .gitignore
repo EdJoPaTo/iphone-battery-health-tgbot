@@ -1,4 +1,6 @@
 .vscode
+coverage
+docs
 node_modules
 
 /config.yaml

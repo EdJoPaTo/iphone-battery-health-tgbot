@@ -37,7 +37,7 @@ export const mainMenu = new MenuTemplate<MyContext>((ctx) =>
 	`Moin ${ctx.state.owner}!\n\nSelect your device. With this bot you can not add new devices. Ask the admin for this.`
 );
 
-export const deviceMenu = new MenuTemplate<MyContext>(async (ctx) => {
+const deviceMenu = new MenuTemplate<MyContext>(async (ctx) => {
 	const entry = await getCurrentEntry(ctx);
 	let text = format.monospaceBlock(yaml.stringify(entry), "yaml");
 	text += "\n\n";
