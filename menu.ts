@@ -1,4 +1,6 @@
-import { createBackMainMenuButtons, MenuTemplate } from "grammy-inline-menu";
+import { StatelessQuestion } from "@grammyjs/stateless-question";
+import { Composer } from "grammy";
+import { createBackMainMenuButtons, deleteMenuFromContext, getMenuOfPath, MenuTemplate, replyMenuToContext } from "grammy-inline-menu";
 import * as yaml from "jsr:@std/yaml@1";
 import { html as format } from "npm:telegram-format@3";
 import {
@@ -33,13 +35,21 @@ async function getCurrentEntry(ctx: MyContext): Promise<BatteryEntry> {
 	return entry;
 }
 
+export const bot = new Composer<MyContext>();
+
 export const mainMenu = new MenuTemplate<MyContext>((ctx) =>
 	`Moin ${ctx.state.owner}!\n\nSelect your device. With this bot you can not add new devices. Ask the admin for this.`
 );
 
 const deviceMenu = new MenuTemplate<MyContext>(async (ctx) => {
 	const entry = await getCurrentEntry(ctx);
-	let text = format.monospaceBlock(yaml.stringify(entry), "yaml");
+	const relevant = {
+		owner: entry.owner,
+		device: entry.device,
+		age: entry.age,
+		warningSince: entry.warningSince,
+	};
+	let text = format.monospaceBlock(yaml.stringify(relevant), "yaml");
 	text += "\n\n";
 	text +=
 		"⚠️ Does the device show a warning and doesnt show Peak performance capability? When thats the case please send the admin a message about this. Then it can be added to the dataset as well.";
@@ -60,7 +70,18 @@ mainMenu.chooseIntoSubmenu("d", deviceMenu, {
 	},
 });
 
-deviceMenu.choose("percent", {
+const relativeHealthMenu = new MenuTemplate<MyContext>(async (ctx) => {
+	const entry = await getCurrentEntry(ctx);
+	const relevant = {
+		owner: entry.owner,
+		device: entry.device,
+		age: entry.age,
+		health: entry.health,
+	};
+	const text = format.monospaceBlock(yaml.stringify(relevant), "yaml");
+	return { text, parse_mode: format.parse_mode };
+});
+relativeHealthMenu.choose("percent", {
 	columns: 5,
 	async choices(ctx) {
 		const entry = await getCurrentEntry(ctx);
@@ -84,5 +105,47 @@ deviceMenu.choose("percent", {
 		return "..";
 	},
 });
+relativeHealthMenu.manualRow(createBackMainMenuButtons());
+deviceMenu.submenu("health", relativeHealthMenu, { text: "relative health" });
+
+const cycleQuestion = new StatelessQuestion<MyContext>('cycles', async (ctx, path) => {
+	const entry = await getCurrentEntry(ctx);
+	const today = new Date().toISOString().substring(0, 10) as IsoDate;
+
+	const input = Number(ctx.message.text);
+	if (Number.isFinite(input) && Number.isSafeInteger(input) && input >= 0) {
+		entry.cycles ??= {};
+		if (entry.cycles[today] !== input) {
+			entry.cycles[today] = input;
+			await update(entry);
+		}
+	} else {
+		await ctx.reply("doesnt look like a cycle count?");
+	}
+
+	await replyMenuToContext(cyclesMenu, ctx, path);
+});
+bot.use(cycleQuestion);
+const cyclesMenu = new MenuTemplate<MyContext>(async (ctx) => {
+	const entry = await getCurrentEntry(ctx);
+	const relevant = {
+		owner: entry.owner,
+		device: entry.device,
+		age: entry.age,
+		cycles: entry.cycles ?? {},
+	};
+	const text = format.monospaceBlock(yaml.stringify(relevant), "yaml");
+	return { text, parse_mode: format.parse_mode };
+});
+cyclesMenu.interact("question", {
+	text: 'Enter',
+	async do(ctx, path) {
+		await cycleQuestion.replyWithHTML(ctx, 'Whats the current cycle count?', getMenuOfPath(path));
+		await deleteMenuFromContext(ctx); // TODO: maybe only remove the buttons?
+		return false;
+	}
+})
+cyclesMenu.manualRow(createBackMainMenuButtons());
+deviceMenu.submenu("cycles", cyclesMenu, { text: "cycles" });
 
 deviceMenu.manualRow(createBackMainMenuButtons());
