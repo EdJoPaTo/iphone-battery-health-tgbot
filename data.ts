@@ -78,8 +78,10 @@ export async function update(entry: BatteryEntry): Promise<void> {
 	);
 	if (before) {
 		before.health = entry.health;
+		before.cycles = entry.cycles;
 		before.warningSince = entry.warningSince;
 		if (!before.warningSince) delete before.warningSince;
+		if (Object.keys(before.cycles ?? {}).length === 0) delete before.cycles;
 		message = `feat(data): update ${entry.owner} ${entry.device}`;
 	} else {
 		batteries.push(entry);

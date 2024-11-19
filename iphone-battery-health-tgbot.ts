@@ -3,7 +3,7 @@ import { MenuMiddleware } from "grammy-inline-menu";
 import { html as format } from "npm:telegram-format@3";
 import { getName } from "./config.ts";
 import { pull } from "./data.ts";
-import { mainMenu, bot as menuMiddlewares } from "./menu.ts";
+import { bot as menuRelatedMiddlewares, mainMenu } from "./menu.ts";
 import type { MyContext } from "./my-context.ts";
 
 const BOT_TOKEN = Deno.env.get("BOT_TOKEN");
@@ -77,7 +77,7 @@ bot.use(async (ctx, next) => {
 });
 
 const menu = new MenuMiddleware<MyContext>("/", mainMenu);
-bot.use(menu, menuMiddlewares);
+bot.use(menuRelatedMiddlewares, menu);
 bot.command("start", (ctx) => menu.replyToContext(ctx));
 
 bot.command("pull", async (ctx) => {
