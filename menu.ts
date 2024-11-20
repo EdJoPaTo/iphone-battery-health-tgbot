@@ -152,13 +152,13 @@ const cyclesMenu = new MenuTemplate<MyContext>(async (ctx) => {
 	const entry = await getCurrentEntry(ctx);
 	const relevant = pick(entry, "owner", "device", "age", "cycles");
 	let text =
-		"Battery Cycles is shown on newer devices but can also accessed on older devices from the Analytics Data (" +
+		"Battery Cycles is shown on newer devices but can also be accessed on older devices from the Analytics Data (" +
 		format.monospace("last_value_CycleCount") + ")\n\n";
 	text += format.monospaceBlock(yaml.stringify(relevant), "yaml");
 	return { text, parse_mode: format.parse_mode };
 });
 cyclesMenu.interact("question", {
-	text: "Enter",
+	text: "Enter cycle count",
 	async do(ctx, path) {
 		const entry = await getCurrentEntry(ctx);
 		const text =
