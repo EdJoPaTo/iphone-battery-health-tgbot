@@ -151,7 +151,9 @@ bot.use(cycleQuestion);
 const cyclesMenu = new MenuTemplate<MyContext>(async (ctx) => {
 	const entry = await getCurrentEntry(ctx);
 	const relevant = pick(entry, "owner", "device", "age", "cycles");
-	let text = 'Battery Cycles is shown on newer devices but can also accessed on older devices from the Analytics Data (' + format.monospace("last_value_CycleCount") + ')\n\n';
+	let text =
+		"Battery Cycles is shown on newer devices but can also accessed on older devices from the Analytics Data (" +
+		format.monospace("last_value_CycleCount") + ")\n\n";
 	text += format.monospaceBlock(yaml.stringify(relevant), "yaml");
 	return { text, parse_mode: format.parse_mode };
 });
