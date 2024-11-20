@@ -2,7 +2,6 @@ import { StatelessQuestion } from "@grammyjs/stateless-question";
 import { Composer } from "grammy";
 import {
 	createBackMainMenuButtons,
-	deleteMenuFromContext,
 	getMenuOfPath,
 	MenuTemplate,
 	replyMenuToContext,
@@ -167,7 +166,7 @@ cyclesMenu.interact("question", {
 			entry.age,
 		].join("#");
 		await cycleQuestion.replyWithHTML(ctx, text, additionalState);
-		await deleteMenuFromContext(ctx); // TODO: maybe only remove the buttons?
+		await ctx.editMessageReplyMarkup(undefined);
 		return false;
 	},
 });
