@@ -174,4 +174,16 @@ cyclesMenu.interact("question", {
 cyclesMenu.manualRow(createBackMainMenuButtons());
 deviceMenu.submenu("cycles", cyclesMenu, { text: "cycles" });
 
+const rawDataMenu = new MenuTemplate<MyContext>(async (ctx) => {
+	const entry = await getCurrentEntry(ctx);
+	const text = format.monospaceBlock(yaml.stringify(entry), "yaml");
+	return { text, parse_mode: format.parse_mode };
+});
+rawDataMenu.url({
+	text: "Full data.yaml",
+	url: "https://github.com/EdJoPaTo/iPhoneBatteryHealth/blob/main/data.yaml",
+});
+rawDataMenu.manualRow(createBackMainMenuButtons());
+deviceMenu.submenu("raw", rawDataMenu, { text: "raw data" });
+
 deviceMenu.manualRow(createBackMainMenuButtons());
