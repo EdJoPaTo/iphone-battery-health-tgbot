@@ -5,6 +5,7 @@
       "jsr:@std/assert@1": "jsr:@std/assert@1.0.8",
       "jsr:@std/internal@^1.0.5": "jsr:@std/internal@1.0.5",
       "jsr:@std/yaml@1": "jsr:@std/yaml@1.0.5",
+      "npm:@grammyjs/stateless-question@4": "npm:@grammyjs/stateless-question@4.0.0_grammy@1.32.0",
       "npm:grammy-inline-menu@9": "npm:grammy-inline-menu@9.2.0_grammy@1.32.0",
       "npm:grammy@1": "npm:grammy@1.32.0",
       "npm:telegram-format@3": "npm:telegram-format@3.1.0"
@@ -24,6 +25,12 @@
       }
     },
     "npm": {
+      "@grammyjs/stateless-question@4.0.0_grammy@1.32.0": {
+        "integrity": "sha512-qxudqvZZ0P+bn5Zg2A6dMkoDbwgfINcANA3HfsJPJeJwzv9PsSYqjD7dQkyCW23rP3mqxnkirW/t4dwnyOuPyA==",
+        "dependencies": {
+          "grammy": "grammy@1.32.0"
+        }
+      },
       "@grammyjs/types@3.16.0": {
         "integrity": "sha512-hElpAJL7/p8PnHvOM0K8+iU0lrVqFgVHzsAknNomZXWT9sFyj5tmEmsAM0JCYBTNvWx5/g5jWU87+PlgUDZ/YA==",
         "dependencies": {}
@@ -96,10 +103,11 @@
     }
   },
   "remote": {
-    "https://raw.githubusercontent.com/EdJoPaTo/iPhoneBatteryHealth/refs/heads/main/data.ts": "a4bd7764e0256c50a4c678394aee9c3f75a1966eb977989ecbcd27c9254ef43a"
+    "https://raw.githubusercontent.com/EdJoPaTo/iPhoneBatteryHealth/refs/heads/main/data.ts": "e516d1d6aa48246a20ac9e5b0584ead3561984646541b6a70561301c482ebbeb"
   },
   "workspace": {
     "dependencies": [
+      "npm:@grammyjs/stateless-question@4",
       "npm:grammy-inline-menu@9",
       "npm:grammy@1"
     ]

@@ -1,4 +1,11 @@
-import { createBackMainMenuButtons, MenuTemplate } from "grammy-inline-menu";
+import { StatelessQuestion } from "@grammyjs/stateless-question";
+import { Composer } from "grammy";
+import {
+	createBackMainMenuButtons,
+	getMenuOfPath,
+	MenuTemplate,
+	replyMenuToContext,
+} from "grammy-inline-menu";
 import * as yaml from "jsr:@std/yaml@1";
 import { html as format } from "npm:telegram-format@3";
 import {
@@ -10,7 +17,7 @@ import {
 	type IsoDate,
 	update,
 } from "./data.ts";
-import { sortByLocale } from "./helper.ts";
+import { pick, sortByLocale } from "./helper.ts";
 import type { MyContext } from "./my-context.ts";
 
 function isDevice(device: unknown): device is Device {
@@ -24,14 +31,33 @@ function isIsoDate(date: unknown): date is IsoDate {
 
 async function getCurrentEntry(ctx: MyContext): Promise<BatteryEntry> {
 	const matchgroup = Array.isArray(ctx.match) && ctx.match[1];
-	if (!matchgroup) throw new Error("ctx.match is not a regex match");
-	const [device, age] = matchgroup.split(" ");
-	if (!isIsoDate(age)) throw new Error("ctx.match doesnt contain age");
-	if (!isDevice(device)) throw new Error("ctx.match doesnt contain device");
-	const entry = await getEntry(ctx.state.owner, device, age);
-	if (!entry) throw new Error("no device of the user found");
-	return entry;
+
+	if (matchgroup) {
+		const [device, age] = matchgroup.split(" ");
+		if (!isIsoDate(age)) throw new Error("ctx.match doesnt contain age");
+		if (!isDevice(device)) throw new Error("ctx.match doesnt contain device");
+		const entry = await getEntry(ctx.state.owner, device, age);
+		if (!entry) throw new Error("no device of the user found");
+		ctx.session.device = device;
+		ctx.session.age = age;
+		return entry;
+	}
+
+	const { device, age } = ctx.session;
+	if (isDevice(device) && isIsoDate(age)) {
+		const entry = await getEntry(ctx.state.owner, device, age);
+		if (!entry) {
+			delete ctx.session.device;
+			delete ctx.session.age;
+			throw new Error("no device of user found");
+		}
+		return entry;
+	}
+
+	throw new Error("no battery entry referenced in ctx.match or ctx.session");
 }
+
+export const bot = new Composer<MyContext>();
 
 export const mainMenu = new MenuTemplate<MyContext>((ctx) =>
 	`Moin ${ctx.state.owner}!\n\nSelect your device. With this bot you can not add new devices. Ask the admin for this.`
@@ -39,7 +65,8 @@ export const mainMenu = new MenuTemplate<MyContext>((ctx) =>
 
 const deviceMenu = new MenuTemplate<MyContext>(async (ctx) => {
 	const entry = await getCurrentEntry(ctx);
-	let text = format.monospaceBlock(yaml.stringify(entry), "yaml");
+	const relevant = pick(entry, "owner", "device", "age", "warningSince");
+	let text = format.monospaceBlock(yaml.stringify(relevant), "yaml");
 	text += "\n\n";
 	text +=
 		"⚠️ Does the device show a warning and doesnt show Peak performance capability? When thats the case please send the admin a message about this. Then it can be added to the dataset as well.";
@@ -60,7 +87,13 @@ mainMenu.chooseIntoSubmenu("d", deviceMenu, {
 	},
 });
 
-deviceMenu.choose("percent", {
+const relativeHealthMenu = new MenuTemplate<MyContext>(async (ctx) => {
+	const entry = await getCurrentEntry(ctx);
+	const relevant = pick(entry, "owner", "device", "age", "health");
+	const text = format.monospaceBlock(yaml.stringify(relevant), "yaml");
+	return { text, parse_mode: format.parse_mode };
+});
+relativeHealthMenu.choose("percent", {
 	columns: 5,
 	async choices(ctx) {
 		const entry = await getCurrentEntry(ctx);
@@ -84,5 +117,75 @@ deviceMenu.choose("percent", {
 		return "..";
 	},
 });
+relativeHealthMenu.manualRow(createBackMainMenuButtons());
+deviceMenu.submenu("health", relativeHealthMenu, { text: "relative health" });
+
+const cycleQuestion = new StatelessQuestion<MyContext>(
+	"cycles",
+	async (ctx, additionalState) => {
+		const [path, device, age] = additionalState.split("#");
+		if (!path) throw new Error("additionalState is fishy");
+		if (!isIsoDate(age)) throw new Error("question doesnt contain age");
+		if (!isDevice(device)) throw new Error("question doesnt contain device");
+		const entry = await getEntry(ctx.state.owner, device, age);
+		if (!entry) throw new Error("no device of the user found");
+		ctx.session.device = device;
+		ctx.session.age = age;
+
+		const today = new Date().toISOString().substring(0, 10) as IsoDate;
+		const input = Number(ctx.message.text);
+		if (Number.isFinite(input) && Number.isSafeInteger(input) && input >= 0) {
+			entry.cycles ??= {};
+			if (entry.cycles[today] !== input) {
+				entry.cycles[today] = input;
+				await update(entry);
+			}
+		} else {
+			await ctx.reply("doesnt look like a cycle count?");
+		}
+
+		await replyMenuToContext(cyclesMenu, ctx, path);
+	},
+);
+bot.use(cycleQuestion);
+const cyclesMenu = new MenuTemplate<MyContext>(async (ctx) => {
+	const entry = await getCurrentEntry(ctx);
+	const relevant = pick(entry, "owner", "device", "age", "cycles");
+	let text =
+		"Battery Cycles is shown on newer devices but can also be accessed on older devices from the Analytics Data (" +
+		format.monospace("last_value_CycleCount") + ")\n\n";
+	text += format.monospaceBlock(yaml.stringify(relevant), "yaml");
+	return { text, parse_mode: format.parse_mode };
+});
+cyclesMenu.interact("question", {
+	text: "Enter cycle count",
+	async do(ctx, path) {
+		const entry = await getCurrentEntry(ctx);
+		const text =
+			`What's the current cycle count of ${entry.device} ${entry.age}?`;
+		const additionalState = [
+			getMenuOfPath(path),
+			entry.device,
+			entry.age,
+		].join("#");
+		await cycleQuestion.replyWithHTML(ctx, text, additionalState);
+		await ctx.editMessageReplyMarkup(undefined);
+		return false;
+	},
+});
+cyclesMenu.manualRow(createBackMainMenuButtons());
+deviceMenu.submenu("cycles", cyclesMenu, { text: "cycles" });
+
+const rawDataMenu = new MenuTemplate<MyContext>(async (ctx) => {
+	const entry = await getCurrentEntry(ctx);
+	const text = format.monospaceBlock(yaml.stringify(entry), "yaml");
+	return { text, parse_mode: format.parse_mode };
+});
+rawDataMenu.url({
+	text: "Full data.yaml",
+	url: "https://github.com/EdJoPaTo/iPhoneBatteryHealth/blob/main/data.yaml",
+});
+rawDataMenu.manualRow(createBackMainMenuButtons());
+deviceMenu.submenu("raw", rawDataMenu, { text: "raw data" });
 
 deviceMenu.manualRow(createBackMainMenuButtons());
