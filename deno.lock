@@ -55,7 +55,7 @@
         "integrity": "sha512-QxZQvqKa1GM+WlGTGRuHEdsVOGzh1yjL1klMwX+Ojez6srGKeMeZi5JkUIcxokTocjk0vn11Ex6yIknBr0UbMQ==",
         "dependencies": {
           "grammy": "grammy@1.32.0",
-          "type-fest": "type-fest@4.27.0"
+          "type-fest": "type-fest@4.27.1"
         }
       },
       "grammy@1.32.0": {
@@ -85,8 +85,8 @@
         "integrity": "sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==",
         "dependencies": {}
       },
-      "type-fest@4.27.0": {
-        "integrity": "sha512-3IMSWgP7C5KSQqmo1wjhKrwsvXAtF33jO3QY+Uy++ia7hqvgSK6iXbbg5PbDBc1P2ZbNEDgejOrN4YooXvhwCw==",
+      "type-fest@4.27.1": {
+        "integrity": "sha512-3Ta7CyV6daqpwuGJMJKABaUChZZejpzysZkQg1//bLRg2wKQ4duwsg3MMIsHuElq58iDqizg4DBUmK8H8wExJg==",
         "dependencies": {}
       },
       "webidl-conversions@3.0.1": {
