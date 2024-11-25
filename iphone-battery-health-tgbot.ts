@@ -16,7 +16,10 @@ baseBot.command(
 	(ctx) =>
 		ctx.reply(
 			"This bot edits https://github.com/EdJoPaTo/iPhoneBatteryHealth so its data is public. Users that are listed in a config can interact with this bot. When you are not listed you are ignored and dont appear in any logs. When you are listed some data is stored in memory until the bot restarts. The bot source code is here: https://github.com/EdJoPaTo/iphone-battery-health-tgbot",
-			{ link_preview_options: { is_disabled: true } },
+			{
+				link_preview_options: { is_disabled: true },
+				reply_markup: { remove_keyboard: true },
+			},
 		),
 );
 
@@ -52,6 +55,7 @@ Error: `;
 	await ctx.reply(text, {
 		link_preview_options: { is_disabled: true },
 		parse_mode: format.parse_mode,
+		reply_markup: { remove_keyboard: true },
 	});
 });
 
@@ -82,7 +86,9 @@ bot.command("start", (ctx) => menu.replyToContext(ctx));
 
 bot.command("pull", async (ctx) => {
 	await pull();
-	return ctx.reply("Pull successful.");
+	return ctx.reply("Pull successful.", {
+		reply_markup: { remove_keyboard: true },
+	});
 });
 
 const COMMANDS = {
