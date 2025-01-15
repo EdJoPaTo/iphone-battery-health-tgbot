@@ -2,17 +2,17 @@
   "version": "3",
   "packages": {
     "specifiers": {
-      "jsr:@std/assert@1": "jsr:@std/assert@1.0.8",
+      "jsr:@std/assert@1": "jsr:@std/assert@1.0.10",
       "jsr:@std/internal@^1.0.5": "jsr:@std/internal@1.0.5",
       "jsr:@std/yaml@1": "jsr:@std/yaml@1.0.5",
-      "npm:@grammyjs/stateless-question@4": "npm:@grammyjs/stateless-question@4.0.0_grammy@1.32.0",
-      "npm:grammy-inline-menu@9": "npm:grammy-inline-menu@9.2.0_grammy@1.32.0",
-      "npm:grammy@1": "npm:grammy@1.32.0",
+      "npm:@grammyjs/stateless-question@4": "npm:@grammyjs/stateless-question@4.0.0_grammy@1.34.0",
+      "npm:grammy-inline-menu@9": "npm:grammy-inline-menu@9.2.0_grammy@1.34.0",
+      "npm:grammy@1": "npm:grammy@1.34.0",
       "npm:telegram-format@3": "npm:telegram-format@3.1.0"
     },
     "jsr": {
-      "@std/assert@1.0.8": {
-        "integrity": "ebe0bd7eb488ee39686f77003992f389a06c3da1bbd8022184804852b2fa641b",
+      "@std/assert@1.0.10": {
+        "integrity": "59b5cbac5bd55459a19045d95cc7c2ff787b4f8527c0dd195078ff6f9481fbb3",
         "dependencies": [
           "jsr:@std/internal@^1.0.5"
         ]
@@ -25,14 +25,14 @@
       }
     },
     "npm": {
-      "@grammyjs/stateless-question@4.0.0_grammy@1.32.0": {
+      "@grammyjs/stateless-question@4.0.0_grammy@1.34.0": {
         "integrity": "sha512-qxudqvZZ0P+bn5Zg2A6dMkoDbwgfINcANA3HfsJPJeJwzv9PsSYqjD7dQkyCW23rP3mqxnkirW/t4dwnyOuPyA==",
         "dependencies": {
-          "grammy": "grammy@1.32.0"
+          "grammy": "grammy@1.34.0"
         }
       },
-      "@grammyjs/types@3.16.0": {
-        "integrity": "sha512-hElpAJL7/p8PnHvOM0K8+iU0lrVqFgVHzsAknNomZXWT9sFyj5tmEmsAM0JCYBTNvWx5/g5jWU87+PlgUDZ/YA==",
+      "@grammyjs/types@3.18.0": {
+        "integrity": "sha512-/VpQcT6Z0+Lw6H6jv2JvnDmqB1/9rjbFdDBlPBPUW3kQ1bWfjzfaiVk2+J2eiid3o3sLaPp3ZK0XjEI1gWNc3g==",
         "dependencies": {}
       },
       "abort-controller@3.0.0": {
@@ -41,8 +41,8 @@
           "event-target-shim": "event-target-shim@5.0.1"
         }
       },
-      "debug@4.3.7": {
-        "integrity": "sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==",
+      "debug@4.4.0": {
+        "integrity": "sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==",
         "dependencies": {
           "ms": "ms@2.1.3"
         }
@@ -51,19 +51,19 @@
         "integrity": "sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==",
         "dependencies": {}
       },
-      "grammy-inline-menu@9.2.0_grammy@1.32.0": {
+      "grammy-inline-menu@9.2.0_grammy@1.34.0": {
         "integrity": "sha512-QxZQvqKa1GM+WlGTGRuHEdsVOGzh1yjL1klMwX+Ojez6srGKeMeZi5JkUIcxokTocjk0vn11Ex6yIknBr0UbMQ==",
         "dependencies": {
-          "grammy": "grammy@1.32.0",
-          "type-fest": "type-fest@4.27.0"
+          "grammy": "grammy@1.34.0",
+          "type-fest": "type-fest@4.32.0"
         }
       },
-      "grammy@1.32.0": {
-        "integrity": "sha512-FUH7q0BhMyqsx8abo45iwKBnHX6Q9A4o1uUTVA3sjzyQtLzzYLeDgzCgUqjaKUh2xF/+LZBw2lgJkRWlB2RKeg==",
+      "grammy@1.34.0": {
+        "integrity": "sha512-YSLUSLdwycufB0Si9em+Ef3aXt7Vq0LYuGgwF4+ZskPb6+3RzrPdkh28qQNKhCeIXKodgMKQ5CxAHf/fLJZufg==",
         "dependencies": {
-          "@grammyjs/types": "@grammyjs/types@3.16.0",
+          "@grammyjs/types": "@grammyjs/types@3.18.0",
           "abort-controller": "abort-controller@3.0.0",
-          "debug": "debug@4.3.7",
+          "debug": "debug@4.4.0",
           "node-fetch": "node-fetch@2.7.0"
         }
       },
@@ -85,8 +85,8 @@
         "integrity": "sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==",
         "dependencies": {}
       },
-      "type-fest@4.27.0": {
-        "integrity": "sha512-3IMSWgP7C5KSQqmo1wjhKrwsvXAtF33jO3QY+Uy++ia7hqvgSK6iXbbg5PbDBc1P2ZbNEDgejOrN4YooXvhwCw==",
+      "type-fest@4.32.0": {
+        "integrity": "sha512-rfgpoi08xagF3JSdtJlCwMq9DGNDE0IMh3Mkpc1wUypg9vPi786AiqeBBKcqvIkq42azsBM85N490fyZjeUftw==",
         "dependencies": {}
       },
       "webidl-conversions@3.0.1": {
