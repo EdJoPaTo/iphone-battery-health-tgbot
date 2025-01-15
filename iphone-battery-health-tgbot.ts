@@ -3,8 +3,10 @@ import { MenuMiddleware } from "grammy-inline-menu";
 import { html as format } from "npm:telegram-format@3";
 import { getName } from "./config.ts";
 import { pull } from "./data.ts";
+import { sleep } from "./helper.ts";
 import { bot as menuRelatedMiddlewares, mainMenu } from "./menu.ts";
 import type { MyContext } from "./my-context.ts";
+import { getIdsToNotify } from "./notify.ts";
 
 const BOT_TOKEN = Deno.env.get("BOT_TOKEN");
 if (!BOT_TOKEN) throw new Error("requires BOT_TOKEN env variable");
@@ -100,6 +102,30 @@ await baseBot.api.setMyCommands(
 	Object.entries(COMMANDS)
 		.map(([command, description]) => ({ command, description })),
 );
+
+await notify();
+setInterval(notify, 1000 * 60 * 15); // every 15 minutes
+
+async function notify(): Promise<void> {
+	const now = new Date();
+	if (now.getDate() !== 15) return;
+	if (now.getHours() !== 4) return;
+	if (now.getMinutes() >= 15) return;
+
+	for await (const id of getIdsToNotify()) {
+		console.log("notify", getName(id), id);
+		try {
+			await baseBot.api.sendMessage(id, "🔋👀😇 → /start");
+		} catch (error) {
+			console.error(
+				"error while notify sendMessage",
+				error instanceof Error ? error.message : error,
+			);
+		}
+		await sleep(1000);
+	}
+	console.log("notify all done");
+}
 
 await baseBot.start({
 	onStart(botInfo) {

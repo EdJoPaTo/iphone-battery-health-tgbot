@@ -30,3 +30,9 @@ export function pick<T extends object, K extends keyof T>(
 		.map((key) => [key, base[key]]);
 	return Object.fromEntries(entries);
 }
+
+export async function sleep(ms: number): Promise<void> {
+	await new Promise((resolve) => {
+		setTimeout(resolve, ms);
+	});
+}

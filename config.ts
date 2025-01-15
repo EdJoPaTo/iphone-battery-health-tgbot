@@ -12,3 +12,11 @@ export function getName(id: number | undefined): string | undefined {
 	if (!id) return undefined;
 	return CONFIG.users[id];
 }
+
+type UserArrayEntry = {
+	readonly id: number;
+	readonly name: string;
+};
+
+export const USERS: readonly UserArrayEntry[] = Object.entries(CONFIG.users)
+	.map(([id, name]) => ({ id: Number(id), name }));
