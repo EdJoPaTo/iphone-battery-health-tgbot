@@ -109,7 +109,7 @@ setInterval(notify, 1000 * 60 * 15); // every 15 minutes
 async function notify(): Promise<void> {
 	const now = new Date();
 	if (now.getDate() !== 15) return;
-	if (now.getHours() !== 4) return;
+	if (now.getHours() !== 3) return;
 	if (now.getMinutes() >= 15) return;
 
 	for await (const id of getIdsToNotify()) {
