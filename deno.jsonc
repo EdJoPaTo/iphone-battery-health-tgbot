@@ -12,7 +12,7 @@
 	"exclude": [
 		"./coverage/",
 		"./data/",
-		"./docs",
+		"./docs/",
 		"./node_modules/"
 	],
 	"fmt": {

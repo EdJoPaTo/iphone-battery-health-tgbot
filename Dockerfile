@@ -1,4 +1,4 @@
-FROM docker.io/denoland/deno:debian-1.46.3 AS builder
+FROM docker.io/denoland/deno:latest AS builder
 RUN apt-get update \
 	&& apt-get upgrade -y \
 	&& apt-get install -y unzip
@@ -13,7 +13,7 @@ RUN deno compile \
 	iphone-battery-health-tgbot.ts
 
 
-FROM docker.io/library/debian:bookworm-slim
+FROM docker.io/library/debian:bookworm-slim AS final
 RUN apt-get update \
 	&& apt-get upgrade -y \
 	&& apt-get install -y git \
