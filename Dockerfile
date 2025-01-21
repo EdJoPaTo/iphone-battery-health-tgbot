@@ -4,9 +4,10 @@ RUN apt-get update \
 	&& apt-get install -y unzip
 WORKDIR /app
 COPY . ./
+# Deno regression doesnt work with --allow-net=api.telegram.org:443 currently and fails with `ENOTFOUND api.telegram.org` without showing permissions errors in the log.
 RUN deno compile \
 	--allow-env \
-	--allow-net=api.telegram.org:443 \
+	--allow-net \
 	--allow-read \
 	--allow-run=git \
 	--allow-write=data \
