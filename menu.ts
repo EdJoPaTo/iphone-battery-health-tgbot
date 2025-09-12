@@ -6,12 +6,15 @@ import {
 	MenuTemplate,
 	replyMenuToContext,
 } from "grammy-inline-menu";
+import { InputFile } from "grammy/types";
 import * as yaml from "jsr:@std/yaml@1";
 import { html as format } from "npm:telegram-format@3";
+import { batteryDate } from "./battery-date.ts";
 import {
 	type BatteryEntry,
 	type Device,
 	DEVICES,
+	getAllOfDevice,
 	getEntries,
 	getEntry,
 	type IsoDate,
@@ -118,7 +121,9 @@ relativeHealthMenu.choose("percent", {
 	},
 });
 relativeHealthMenu.manualRow(createBackMainMenuButtons());
-deviceMenu.submenu("health", relativeHealthMenu, { text: "relative health" });
+deviceMenu.submenu("health", relativeHealthMenu, {
+	text: "✏️ relative health",
+});
 
 const cycleQuestion = new StatelessQuestion<MyContext>(
 	"cycles",
@@ -174,7 +179,7 @@ cyclesMenu.interact("question", {
 	},
 });
 cyclesMenu.manualRow(createBackMainMenuButtons());
-deviceMenu.submenu("cycles", cyclesMenu, { text: "cycles" });
+deviceMenu.submenu("cycles", cyclesMenu, { text: "✏️ cycles" });
 
 const rawDataMenu = new MenuTemplate<MyContext>(async (ctx) => {
 	const entry = await getCurrentEntry(ctx);
@@ -186,6 +191,21 @@ rawDataMenu.url({
 	url: "https://github.com/EdJoPaTo/iPhoneBatteryHealth/blob/main/data.yaml",
 });
 rawDataMenu.manualRow(createBackMainMenuButtons());
-deviceMenu.submenu("raw", rawDataMenu, { text: "raw data" });
+deviceMenu.submenu("raw", rawDataMenu, { text: "💾 raw data" });
+
+const deviceGraphMenu = new MenuTemplate<MyContext>(async (ctx) => {
+	const entry = await getCurrentEntry(ctx);
+	const device = entry.device;
+
+	const entries = await getAllOfDevice(device);
+	const filepath = await batteryDate(device, entries);
+	return {
+		media: new InputFile(filepath),
+		type: "photo",
+		text: `Compare all ${device}`,
+	};
+});
+deviceGraphMenu.manualRow(createBackMainMenuButtons());
+deviceMenu.submenu("graph", deviceGraphMenu, { text: "📉 device graph" });
 
 deviceMenu.manualRow(createBackMainMenuButtons());

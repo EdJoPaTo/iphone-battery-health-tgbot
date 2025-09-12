@@ -9,15 +9,15 @@ RUN deno compile \
 	--allow-env \
 	--allow-net \
 	--allow-read \
-	--allow-run=git \
-	--allow-write=data \
+	--allow-run=git,gnuplot \
+	--allow-write=data,/tmp \
 	iphone-battery-health-tgbot.ts
 
 
 FROM docker.io/library/debian:trixie-slim AS final
 RUN apt-get update \
 	&& apt-get upgrade -y \
-	&& apt-get install -y git \
+	&& apt-get install -y git gnuplot \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /var/cache/* /var/log/*
 
@@ -26,6 +26,7 @@ VOLUME /app/data
 
 COPY gitconfig /root/.gitconfig
 COPY known_hosts /root/.ssh/known_hosts
+COPY *.gnuplot ./
 
 COPY --from=builder /app/iphone-battery-health-tgbot /usr/local/bin/
 CMD ["iphone-battery-health-tgbot"]

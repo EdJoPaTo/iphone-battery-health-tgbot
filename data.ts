@@ -47,6 +47,13 @@ async function commit(
 	await git("-C", "data", "push");
 }
 
+export async function getAllOfDevice(
+	device: Device,
+): Promise<Array<BatteryEntry>> {
+	const all = await load(PATH);
+	return all.filter((entry) => entry.device === device);
+}
+
 export async function getEntries(
 	owner: string,
 ): Promise<Array<BatteryEntry>> {
