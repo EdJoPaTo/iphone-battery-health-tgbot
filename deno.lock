@@ -1,21 +1,21 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@std/assert@1": "1.0.14",
+    "jsr:@std/assert@1": "1.0.15",
     "jsr:@std/bytes@^1.0.6": "1.0.6",
     "jsr:@std/csv@1": "1.0.6",
-    "jsr:@std/internal@^1.0.10": "1.0.10",
-    "jsr:@std/streams@^1.0.9": "1.0.12",
-    "jsr:@std/yaml@1": "1.0.9",
-    "npm:@grammyjs/stateless-question@4": "4.0.0_grammy@1.38.2",
+    "jsr:@std/internal@^1.0.12": "1.0.12",
+    "jsr:@std/streams@^1.0.9": "1.0.13",
+    "jsr:@std/yaml@1": "1.0.10",
+    "npm:@grammyjs/stateless-question@4": "4.0.0_grammy@1.38.3",
     "npm:@types/node@*": "24.2.0",
-    "npm:grammy-inline-menu@9": "9.2.0_grammy@1.38.2",
-    "npm:grammy@1": "1.38.2",
+    "npm:grammy-inline-menu@9": "9.2.0_grammy@1.38.3",
+    "npm:grammy@1": "1.38.3",
     "npm:telegram-format@3": "3.1.0"
   },
   "jsr": {
-    "@std/assert@1.0.14": {
-      "integrity": "68d0d4a43b365abc927f45a9b85c639ea18a9fab96ad92281e493e4ed84abaa4",
+    "@std/assert@1.0.15": {
+      "integrity": "d64018e951dbdfab9777335ecdb000c0b4e3df036984083be219ce5941e4703b",
       "dependencies": [
         "jsr:@std/internal"
       ]
@@ -29,28 +29,28 @@
         "jsr:@std/streams"
       ]
     },
-    "@std/internal@1.0.10": {
-      "integrity": "e3be62ce42cab0e177c27698e5d9800122f67b766a0bea6ca4867886cbde8cf7"
+    "@std/internal@1.0.12": {
+      "integrity": "972a634fd5bc34b242024402972cd5143eac68d8dffaca5eaa4dba30ce17b027"
     },
-    "@std/streams@1.0.12": {
-      "integrity": "ae925fa1dc459b1abf5cbaa28cc5c7b0485853af3b2a384b0dc22d86e59dfbf4",
+    "@std/streams@1.0.13": {
+      "integrity": "772d208cd0d3e5dac7c1d9e6cdb25842846d136eea4a41a62e44ed4ab0c8dd9e",
       "dependencies": [
         "jsr:@std/bytes"
       ]
     },
-    "@std/yaml@1.0.9": {
-      "integrity": "6bad3dc766dd85b4b37eabcba81b6aa4eac7a392792ae29abcfb0f90602d55bb"
+    "@std/yaml@1.0.10": {
+      "integrity": "245706ea3511cc50c8c6d00339c23ea2ffa27bd2c7ea5445338f8feff31fa58e"
     }
   },
   "npm": {
-    "@grammyjs/stateless-question@4.0.0_grammy@1.38.2": {
+    "@grammyjs/stateless-question@4.0.0_grammy@1.38.3": {
       "integrity": "sha512-qxudqvZZ0P+bn5Zg2A6dMkoDbwgfINcANA3HfsJPJeJwzv9PsSYqjD7dQkyCW23rP3mqxnkirW/t4dwnyOuPyA==",
       "dependencies": [
         "grammy"
       ]
     },
-    "@grammyjs/types@3.22.1": {
-      "integrity": "sha512-QJX0Y8lpjE+/nuTKGmxybKmvdrLHV7gqbhI/UXoWlJLWtowbwk+oW+ngfHKwegD+ewL2SX8+tQo/1E14Ma0qlw=="
+    "@grammyjs/types@3.22.2": {
+      "integrity": "sha512-uu7DX2ezhnBPozL3bXHmwhLvaFsh59E4QyviNH4Cij7EdVekYrs6mCzeXsa2pDk30l3uXo7DBahlZLzTPtpYZg=="
     },
     "@types/node@24.2.0": {
       "integrity": "sha512-3xyG3pMCq3oYCNg7/ZP+E1ooTaGB4cG8JWRsqqOYQdbWNY4zbaV0Ennrd7stjiJEFZCaybcIgpTjJWHRfBSIDw==",
@@ -64,8 +64,8 @@
         "event-target-shim"
       ]
     },
-    "debug@4.4.1": {
-      "integrity": "sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==",
+    "debug@4.4.3": {
+      "integrity": "sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==",
       "dependencies": [
         "ms"
       ]
@@ -73,15 +73,15 @@
     "event-target-shim@5.0.1": {
       "integrity": "sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ=="
     },
-    "grammy-inline-menu@9.2.0_grammy@1.38.2": {
+    "grammy-inline-menu@9.2.0_grammy@1.38.3": {
       "integrity": "sha512-QxZQvqKa1GM+WlGTGRuHEdsVOGzh1yjL1klMwX+Ojez6srGKeMeZi5JkUIcxokTocjk0vn11Ex6yIknBr0UbMQ==",
       "dependencies": [
         "grammy",
         "type-fest"
       ]
     },
-    "grammy@1.38.2": {
-      "integrity": "sha512-11O8rA3kt54Avk6cIyqdXFphkq1fbFz9Vh8hbbj8vid0VqJbZ4Yz2fpqDeaDONxnX3h9NdE/JGMk7VHVtmwKuQ==",
+    "grammy@1.38.3": {
+      "integrity": "sha512-1eQwNfxrRQ0JOFqd3n1nKqyWkHvCQRCNiH8e5aYm27mIjGPobgss58XN8GORC2ejAWM2+NSdUknrMhYj87cjGg==",
       "dependencies": [
         "@grammyjs/types",
         "abort-controller",
