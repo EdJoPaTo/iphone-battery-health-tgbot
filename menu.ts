@@ -68,8 +68,13 @@ export const mainMenu = new MenuTemplate<MyContext>((ctx) =>
 
 const deviceMenu = new MenuTemplate<MyContext>(async (ctx) => {
 	const entry = await getCurrentEntry(ctx);
-	const relevant = pick(entry, "owner", "device", "age", "warningSince");
-	let text = format.monospaceBlock(yaml.stringify(relevant), "yaml");
+	if (Object.keys(entry.health).length > 1) {
+		entry.health = Object.fromEntries(Object.entries(entry.health).slice(-1));
+	}
+	if (entry.cycles && Object.keys(entry.cycles).length > 1) {
+		entry.cycles = Object.fromEntries(Object.entries(entry.cycles).slice(-1));
+	}
+	let text = format.monospaceBlock(yaml.stringify(entry), "yaml");
 	text += "\n\n";
 	text +=
 		"⚠️ Does the device show a warning and doesnt show Peak performance capability? When thats the case please send the admin a message about this. Then it can be added to the dataset as well.";
