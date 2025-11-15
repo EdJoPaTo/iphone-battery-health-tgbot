@@ -27,8 +27,8 @@ async function hasUpdatedRecently(owner: string): Promise<boolean> {
 		(Date.now() - Date.parse(timestamp)) / MILLISECONDS_PER_DAY
 	);
 
-	/// Any less than 25 days ago
-	const wasUpdatedRecently = daysAgo.some((o) => o < 25);
+	/// Any less than 10 days ago
+	const wasUpdatedRecently = daysAgo.some((o) => o < 10);
 
 	return !wasUpdatedRecently;
 }
