@@ -1,6 +1,6 @@
 import { Bot, session } from "grammy";
 import { MenuMiddleware } from "grammy-inline-menu";
-import { html as format } from "npm:telegram-format@3";
+import { html as format } from "telegram-format";
 import { getName } from "./config.ts";
 import { pull } from "./data.ts";
 import { sleep } from "./helper.ts";

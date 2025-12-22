@@ -1,4 +1,4 @@
-import * as yaml from "jsr:@std/yaml@1";
+import * as yaml from "@std/yaml";
 
 interface Config {
 	users: Readonly<Record<number, string>>;

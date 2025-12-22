@@ -5,7 +5,7 @@ import {
 	type IsoDate,
 	load,
 	save,
-} from "https://raw.githubusercontent.com/EdJoPaTo/iPhoneBatteryHealth/refs/heads/main/data.ts";
+} from "battery-health-data";
 import { existsSync } from "node:fs";
 
 export { type BatteryEntry, type Device, DEVICES, type IsoDate };

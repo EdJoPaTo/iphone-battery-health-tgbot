@@ -1,4 +1,5 @@
 import { StatelessQuestion } from "@grammyjs/stateless-question";
+import * as yaml from "@std/yaml";
 import { Composer } from "grammy";
 import {
 	createBackMainMenuButtons,
@@ -7,8 +8,7 @@ import {
 	replyMenuToContext,
 } from "grammy-inline-menu";
 import { InputFile } from "grammy/types";
-import * as yaml from "jsr:@std/yaml@1";
-import { html as format } from "npm:telegram-format@3";
+import { html as format } from "telegram-format";
 import { batteryDate } from "./battery-date.ts";
 import {
 	type BatteryEntry,

@@ -34,13 +34,16 @@
 				"no-slow-types",
 				"no-sparse-arrays",
 				"verbatim-module-syntax"
-			],
-			"exclude": ["no-import-prefix"]
+			]
 		}
 	},
 	"imports": {
-		"@grammyjs/stateless-question": "npm:@grammyjs/stateless-question@4",
-		"grammy-inline-menu": "npm:grammy-inline-menu@9",
-		"grammy": "npm:grammy@1"
+		"@grammyjs/stateless-question": "npm:@grammyjs/stateless-question@^4",
+		"@std/csv": "jsr:@std/csv@^1",
+		"@std/yaml": "jsr:@std/yaml@^1",
+		"battery-health-data": "https://raw.githubusercontent.com/EdJoPaTo/iPhoneBatteryHealth/refs/heads/main/data.ts",
+		"grammy": "npm:grammy@^1",
+		"grammy-inline-menu": "npm:grammy-inline-menu@^9",
+		"telegram-format": "npm:telegram-format@^3"
 	}
 }
