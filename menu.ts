@@ -192,8 +192,8 @@ const rawDataMenu = new MenuTemplate<MyContext>(async (ctx) => {
 	return { text, parse_mode: format.parse_mode };
 });
 rawDataMenu.url({
-	text: "Full data.yaml",
-	url: "https://github.com/EdJoPaTo/iPhoneBatteryHealth/blob/main/data.yaml",
+	text: "Raw data files on GitHub",
+	url: "https://github.com/EdJoPaTo/iPhoneBatteryHealth/blob/main/data",
 });
 rawDataMenu.manualRow(createBackMainMenuButtons());
 deviceMenu.submenu("raw", rawDataMenu, { text: "💾 raw data" });

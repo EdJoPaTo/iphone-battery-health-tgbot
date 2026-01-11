@@ -4,13 +4,15 @@ import {
 	DEVICES,
 	type IsoDate,
 	load,
+	loadAll,
 	save,
 } from "battery-health-data";
 import { existsSync } from "node:fs";
 
 export { type BatteryEntry, type Device, DEVICES, type IsoDate };
 
-const PATH = "data/data.yaml";
+/** The repository is `data` and contains a `data` folder */
+const DATAPATH = "data/data";
 
 await pull();
 
@@ -38,26 +40,26 @@ export async function pull(): Promise<void> {
 }
 
 async function commit(
+	device: Device,
 	message: string,
 	batteries: BatteryEntry[],
 ): Promise<void> {
-	await save(PATH, { batteries });
-	await git("-C", "data", "add", "data.yaml");
+	await save(DATAPATH, device, batteries);
+	await git("-C", "data", "add", "data/" + device + ".yaml");
 	await git("-C", "data", "commit", "--message=" + message);
 	await git("-C", "data", "push");
 }
 
-export async function getAllOfDevice(
+export function getAllOfDevice(
 	device: Device,
 ): Promise<Array<BatteryEntry>> {
-	const all = await load(PATH);
-	return all.filter((entry) => entry.device === device);
+	return load(DATAPATH, device);
 }
 
 export async function getEntries(
 	owner: string,
 ): Promise<Array<BatteryEntry>> {
-	const all = await load(PATH);
+	const all = await loadAll(DATAPATH);
 	return all.filter((entry) => entry.owner === owner);
 }
 
@@ -66,10 +68,9 @@ export async function getEntry(
 	device: Device,
 	age: IsoDate,
 ): Promise<BatteryEntry | undefined> {
-	const all = await load(PATH);
+	const all = await load(DATAPATH, device);
 	return all.find((entry) =>
 		entry.owner === owner &&
-		entry.device === device &&
 		entry.age === age
 	);
 }
@@ -77,10 +78,9 @@ export async function getEntry(
 export async function update(entry: BatteryEntry): Promise<void> {
 	let message: string;
 	await pull();
-	const batteries = await load(PATH);
+	const batteries = await load(DATAPATH, entry.device);
 	const before = batteries.find((value) =>
 		value.owner === entry.owner &&
-		value.device === entry.device &&
 		value.age === entry.age
 	);
 	if (before) {
@@ -94,5 +94,5 @@ export async function update(entry: BatteryEntry): Promise<void> {
 		batteries.push(entry);
 		message = `feat(data): add ${entry.owner} ${entry.device}`;
 	}
-	await commit(message, batteries);
+	await commit(entry.device, message, batteries);
 }
