@@ -3,11 +3,11 @@
   "specifiers": {
     "jsr:@std/bytes@^1.0.6": "1.0.6",
     "jsr:@std/csv@1": "1.0.6",
-    "jsr:@std/streams@^1.0.9": "1.0.16",
-    "jsr:@std/yaml@1": "1.0.10",
-    "npm:@grammyjs/stateless-question@4": "4.0.0_grammy@1.39.2",
-    "npm:grammy-inline-menu@9": "9.2.0_grammy@1.39.2",
-    "npm:grammy@1": "1.39.2",
+    "jsr:@std/streams@^1.0.9": "1.0.17",
+    "jsr:@std/yaml@1": "1.0.12",
+    "npm:@grammyjs/stateless-question@4": "4.0.0_grammy@1.41.1",
+    "npm:grammy-inline-menu@9": "9.3.0_grammy@1.41.1",
+    "npm:grammy@1": "1.41.1",
     "npm:telegram-format@3": "3.1.0"
   },
   "jsr": {
@@ -20,25 +20,25 @@
         "jsr:@std/streams"
       ]
     },
-    "@std/streams@1.0.16": {
-      "integrity": "85030627befb1767c60d4f65cb30fa2f94af1d6ee6e5b2515b76157a542e89c4",
+    "@std/streams@1.0.17": {
+      "integrity": "7859f3d9deed83cf4b41f19223d4a67661b3d3819e9fc117698f493bf5992140",
       "dependencies": [
         "jsr:@std/bytes"
       ]
     },
-    "@std/yaml@1.0.10": {
-      "integrity": "245706ea3511cc50c8c6d00339c23ea2ffa27bd2c7ea5445338f8feff31fa58e"
+    "@std/yaml@1.0.12": {
+      "integrity": "7deabca4545bcedd07c5f69ea53acea71b8b4c67562f224e17b90d75944cb20c"
     }
   },
   "npm": {
-    "@grammyjs/stateless-question@4.0.0_grammy@1.39.2": {
+    "@grammyjs/stateless-question@4.0.0_grammy@1.41.1": {
       "integrity": "sha512-qxudqvZZ0P+bn5Zg2A6dMkoDbwgfINcANA3HfsJPJeJwzv9PsSYqjD7dQkyCW23rP3mqxnkirW/t4dwnyOuPyA==",
       "dependencies": [
         "grammy"
       ]
     },
-    "@grammyjs/types@3.23.0": {
-      "integrity": "sha512-D3jQ4UWERPsyR3op/YFudMMIPNTU47vy7L51uO9/73tMELmjO/+LX5N36/Y0CG5IQfIsz43MxiHI5rgsK0/k+g=="
+    "@grammyjs/types@3.25.0": {
+      "integrity": "sha512-iN9i5p+8ZOu9OMxWNcguojQfz4K/PDyMPOnL7PPCON+SoA/F8OKMH3uR7CVUkYfdNe0GCz8QOzAWrnqusQYFOg=="
     },
     "abort-controller@3.0.0": {
       "integrity": "sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==",
@@ -55,15 +55,15 @@
     "event-target-shim@5.0.1": {
       "integrity": "sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ=="
     },
-    "grammy-inline-menu@9.2.0_grammy@1.39.2": {
-      "integrity": "sha512-QxZQvqKa1GM+WlGTGRuHEdsVOGzh1yjL1klMwX+Ojez6srGKeMeZi5JkUIcxokTocjk0vn11Ex6yIknBr0UbMQ==",
+    "grammy-inline-menu@9.3.0_grammy@1.41.1": {
+      "integrity": "sha512-RA2aY6Q4Co+6EZdsMmdXgod6Bm7BRskgUGBZygZTqIHw/rcWqYRzOkVOP7NUNWno48YdV5PVZv91acawIPposA==",
       "dependencies": [
         "grammy",
         "type-fest"
       ]
     },
-    "grammy@1.39.2": {
-      "integrity": "sha512-7mLdNsNI2HBN1Gjombx7p3/Cjfgw/kErR/Qv3pDRw2qO/dYEdK8B9G9rpdZayNID+3qFQVTXNqxcGpG38mC2TQ==",
+    "grammy@1.41.1": {
+      "integrity": "sha512-wcHAQ1e7svL3fJMpDchcQVcWUmywhuepOOjHUHmMmWAwUJEIyK5ea5sbSjZd+Gy1aMpZeP8VYJa+4tP+j1YptQ==",
       "dependencies": [
         "@grammyjs/types",
         "abort-controller",
