@@ -105,10 +105,10 @@ relativeHealthMenu.choose("percent", {
 	columns: 5,
 	async choices(ctx) {
 		const entry = await getCurrentEntry(ctx);
-		const minimum = Math.min(...Object.values(entry.health));
+		const last = Math.max(...Object.values(entry.health).slice(-2));
 		const result: string[] = [];
 		for (let index = 0; index < 20; index++) {
-			result.push(String(minimum - index));
+			result.push(String(last - index));
 		}
 		return result;
 	},
