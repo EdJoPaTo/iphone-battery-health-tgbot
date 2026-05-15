@@ -19,14 +19,18 @@ RUN apt-get update \
 	&& apt-get install -y git \
 	&& apt-get install -y --no-install-recommends gnuplot \
 	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* /var/cache/* /var/log/*
+	&& groupadd --system --gid 923 runner \
+	&& useradd --system --uid 923 --gid 923 --create-home runner \
+	&& rm -rf /etc/*- /var/lib/apt/lists/* /var/cache/* /var/log/*
 
 WORKDIR /app
 VOLUME /app/data
 
-COPY gitconfig /root/.gitconfig
-COPY known_hosts /root/.ssh/known_hosts
+COPY --chown=runner gitconfig /home/runner/.gitconfig
+COPY --chown=runner known_hosts /home/runner/.ssh/known_hosts
 COPY *.gnuplot ./
 
 COPY --from=builder /app/iphone-battery-health-tgbot /usr/local/bin/
+
+USER runner
 CMD ["iphone-battery-health-tgbot"]
