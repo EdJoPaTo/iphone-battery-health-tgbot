@@ -78,6 +78,7 @@ bot.use(async (ctx, next) => {
 		}. There is no logging about this so you need to tell them yourself.`,
 		{
 			parse_mode: format.parse_mode,
+			reply_markup: { remove_keyboard: true },
 		},
 	);
 });
@@ -115,7 +116,9 @@ async function notify(): Promise<void> {
 	for await (const id of getIdsToNotify()) {
 		console.log("notify", getName(id), id);
 		try {
-			await baseBot.api.sendMessage(id, "🔋👀😇 → /start");
+			await baseBot.api.sendMessage(id, "🔋👀😇 → /start", {
+				reply_markup: { remove_keyboard: true },
+			});
 		} catch (error) {
 			console.error(
 				"error while notify sendMessage",
