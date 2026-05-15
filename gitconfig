@@ -1,3 +1,5 @@
 [user]
 	name = iphone-battery-health-tgbot
 	email = iphone-battery-health-tgbot@edjopato.de
+[safe]
+	directory = /app/data
