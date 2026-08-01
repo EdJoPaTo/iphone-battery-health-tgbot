@@ -1,7 +1,6 @@
 FROM docker.io/denoland/deno:latest AS builder
 RUN apt-get update \
-	&& apt-get upgrade -y \
-	&& apt-get install -y unzip
+	&& apt-get upgrade -y
 WORKDIR /app
 COPY . ./
 RUN deno compile \
