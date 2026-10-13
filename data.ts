@@ -1,3 +1,7 @@
+import childProcess from "node:child_process";
+import { existsSync } from "node:fs";
+import util from "node:util";
+
 import {
 	type BatteryEntry,
 	type Device,
@@ -7,9 +11,10 @@ import {
 	loadAll,
 	save,
 } from "battery-health-data";
-import { existsSync } from "node:fs";
 
 export { type BatteryEntry, type Device, DEVICES, type IsoDate };
+
+const execFile = util.promisify(childProcess.execFile);
 
 /** The repository is `data` and contains a `data` folder */
 const DATAPATH = "data/data";
@@ -17,12 +22,7 @@ const DATAPATH = "data/data";
 await pull();
 
 async function git(...args: string[]): Promise<void> {
-	const command = new Deno.Command("git", { args });
-	const process = command.spawn();
-	const status = await process.status;
-	if (!status.success) {
-		throw new Error(`git was not successful`);
-	}
+	await execFile("git", args);
 }
 
 export async function pull(): Promise<void> {

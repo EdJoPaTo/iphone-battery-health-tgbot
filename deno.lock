@@ -101,7 +101,7 @@
     }
   },
   "remote": {
-    "https://raw.githubusercontent.com/EdJoPaTo/iPhoneBatteryHealth/refs/heads/main/data.ts": "e2717f0b4f4560e0e84419ef2a323b209266baa2e81d94407183c02df90c3ba0"
+    "https://raw.githubusercontent.com/EdJoPaTo/iPhoneBatteryHealth/refs/heads/main/data.ts": "18c92f81ed695bdfb304a4774417e3862afe7ec16d4ecf52b5d65138a98d2451"
   },
   "workspace": {
     "dependencies": [

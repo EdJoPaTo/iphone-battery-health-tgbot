@@ -1,6 +1,9 @@
+import { env } from "node:process";
+
 import { Bot, session } from "grammy";
 import { MenuMiddleware } from "grammy-inline-menu";
 import { html as format } from "telegram-format";
+
 import { getName } from "./config.ts";
 import { pull } from "./data.ts";
 import { sleep } from "./helper.ts";
@@ -8,7 +11,7 @@ import { bot as menuRelatedMiddlewares, mainMenu } from "./menu.ts";
 import type { MyContext } from "./my-context.ts";
 import { getIdsToNotify } from "./notify.ts";
 
-const BOT_TOKEN = Deno.env.get("BOT_TOKEN");
+const BOT_TOKEN = env["BOT_TOKEN"];
 if (!BOT_TOKEN) throw new Error("requires BOT_TOKEN env variable");
 
 const baseBot = new Bot<MyContext>(BOT_TOKEN);

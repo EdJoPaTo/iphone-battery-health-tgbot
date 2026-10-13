@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+
 import * as yaml from "@std/yaml";
 
 interface Config {
@@ -5,7 +7,7 @@ interface Config {
 }
 
 const CONFIG: Readonly<Config> = yaml.parse(
-	Deno.readTextFileSync("config.yaml"),
+	readFileSync("config.yaml", "utf8"),
 ) as Config;
 
 export function getName(id: number | undefined): string | undefined {

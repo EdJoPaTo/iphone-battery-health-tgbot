@@ -1,5 +1,6 @@
 import { deepStrictEqual } from "node:assert";
 import { test } from "node:test";
+
 import { pick, sortBy, sortByLocale } from "./helper.ts";
 
 test("sortBy works", () => {
