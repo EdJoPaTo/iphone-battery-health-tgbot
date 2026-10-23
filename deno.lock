@@ -3,11 +3,11 @@
   "specifiers": {
     "jsr:@std/bytes@^1.0.6": "1.0.6",
     "jsr:@std/csv@1": "1.0.6",
-    "jsr:@std/streams@^1.0.9": "1.0.17",
-    "jsr:@std/yaml@1": "1.0.12",
-    "npm:@grammyjs/stateless-question@4": "4.0.0_grammy@1.41.1",
-    "npm:grammy-inline-menu@9": "9.3.0_grammy@1.41.1",
-    "npm:grammy@1": "1.41.1",
+    "jsr:@std/streams@^1.0.9": "1.2.0",
+    "jsr:@std/yaml@1": "1.3.0",
+    "npm:@grammyjs/stateless-question@4": "4.0.0_grammy@1.46.0",
+    "npm:grammy-inline-menu@9": "9.3.0_grammy@1.46.0",
+    "npm:grammy@1": "1.46.0",
     "npm:telegram-format@3": "3.1.0"
   },
   "jsr": {
@@ -20,25 +20,25 @@
         "jsr:@std/streams"
       ]
     },
-    "@std/streams@1.0.17": {
-      "integrity": "7859f3d9deed83cf4b41f19223d4a67661b3d3819e9fc117698f493bf5992140",
+    "@std/streams@1.2.0": {
+      "integrity": "256b934254778f2bf45f5713b934209ff29e9b4b7fd4ec095219966813758c5f",
       "dependencies": [
         "jsr:@std/bytes"
       ]
     },
-    "@std/yaml@1.0.12": {
-      "integrity": "7deabca4545bcedd07c5f69ea53acea71b8b4c67562f224e17b90d75944cb20c"
+    "@std/yaml@1.3.0": {
+      "integrity": "b250103854378b8b36cbff0fe95aec017d3d9ce86b489c67605180c602fb4922"
     }
   },
   "npm": {
-    "@grammyjs/stateless-question@4.0.0_grammy@1.41.1": {
+    "@grammyjs/stateless-question@4.0.0_grammy@1.46.0": {
       "integrity": "sha512-qxudqvZZ0P+bn5Zg2A6dMkoDbwgfINcANA3HfsJPJeJwzv9PsSYqjD7dQkyCW23rP3mqxnkirW/t4dwnyOuPyA==",
       "dependencies": [
         "grammy"
       ]
     },
-    "@grammyjs/types@3.25.0": {
-      "integrity": "sha512-iN9i5p+8ZOu9OMxWNcguojQfz4K/PDyMPOnL7PPCON+SoA/F8OKMH3uR7CVUkYfdNe0GCz8QOzAWrnqusQYFOg=="
+    "@grammyjs/types@5.0.0": {
+      "integrity": "sha512-iq1Qrq1iPKkB8yAa0qSuIURMZOCuqTY5pWy5gHpCeL1oQ+GPadGhw/cDTVE8waJwuCzacUzuIjRv1sESvk7u7A=="
     },
     "abort-controller@3.0.0": {
       "integrity": "sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==",
@@ -55,15 +55,15 @@
     "event-target-shim@5.0.1": {
       "integrity": "sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ=="
     },
-    "grammy-inline-menu@9.3.0_grammy@1.41.1": {
+    "grammy-inline-menu@9.3.0_grammy@1.46.0": {
       "integrity": "sha512-RA2aY6Q4Co+6EZdsMmdXgod6Bm7BRskgUGBZygZTqIHw/rcWqYRzOkVOP7NUNWno48YdV5PVZv91acawIPposA==",
       "dependencies": [
         "grammy",
         "type-fest"
       ]
     },
-    "grammy@1.41.1": {
-      "integrity": "sha512-wcHAQ1e7svL3fJMpDchcQVcWUmywhuepOOjHUHmMmWAwUJEIyK5ea5sbSjZd+Gy1aMpZeP8VYJa+4tP+j1YptQ==",
+    "grammy@1.46.0": {
+      "integrity": "sha512-/8Qw+iisrUdOMk+p2mjEHouMm/BBdBEN1DHh16wiTpRUZkxDG3PxexdjCvR+wvK3LWPdrEvnQbdrwpU954sPhg==",
       "dependencies": [
         "@grammyjs/types",
         "abort-controller",
